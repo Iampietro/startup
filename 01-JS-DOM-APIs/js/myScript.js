@@ -167,3 +167,4 @@ function setCursorDefault() {
     const cursor = document.getElementsByTagName("body")[0];
     cursor.style.cursor = "default";
 }
+

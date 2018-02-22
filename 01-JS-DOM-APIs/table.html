@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/createTable.js" async></script>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tableStyle.css">
+    <title>JS Basics</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="column full">
+                <header>
+                    <h1>Table created through JS!</h1>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column full">
+                <section>
+                    <h2>Press the button</h2>
+                    <div>
+                        <button onclick="makeTable()" class="click-me">Click Me!</button>
+                    </div>
+                    <div id="table"></div>
+                    <div>
+                        <h3 id="error" hidden>Sorry, just one table allowed.</h3>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
