@@ -1,6 +1,12 @@
-document.getElementById("btn-joke").addEventListener("click", getJoke);
+document.getElementById("btn-joke").addEventListener("click", getJokeWithConfig);
 document.getElementById("btn-repos").addEventListener("click", getRepositories);
 document.getElementById("btn-search").addEventListener("click", searchRepositories);
+
+function printError() {
+    document.getElementById("error").style.color = "red";
+    document.getElementById("error").style.display = "block";
+    document.getElementById("error").style.visibility = "visible";
+}
 
 function getJoke() {
     const request = new XMLHttpRequest();
@@ -15,16 +21,60 @@ function getJoke() {
     }
 
     request.onerror = function() {
-        document.getElementById("error").style.color = "red";
-        document.getElementById("error").style.display = "block";
-        document.getElementById("error").style.visibility = "visible";
+        printError();
     }
     
     request.send();
     
 }
 
+function ajaxCall(configObj) {
+    const getReposAsync = new Promise(function (resolve, reject) {
+        const request = new XMLHttpRequest();
+        request.open(configObj.method, configObj.url, configObj.async);
+
+        request.onload = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                resolve(request);
+            } else {
+                reject();
+            }
+        }
+
+        request.onerror = function() {
+            printError();
+        }
+
+        request.send();
+    });
+
+    return getReposAsync;
+}
+
+function getJokeWithConfig() {
+    const config = {
+        url: 'http://api.icndb.com/jokes/random',
+        method: 'GET',
+        async: true
+    }
+
+    function resolve() {
+        const containsTheJoke = JSON.parse(event.target.response);
+        if (document.getElementById("error").style.visibility == "visible") {
+            document.getElementById("error").style.visibility = "hidden";
+        }
+        document.getElementById("writable").innerHTML = containsTheJoke.value.joke;
+    }
+
+    function reject() {
+        printError();
+    }
+
+    ajaxCall(config).then(resolve, reject);
+}
+
 function getRepositories() {
+    setCursorLoading();
     const request = new XMLHttpRequest();
     request.open("GET", "https://api.github.com/search/repositories?q=javascript", true);
 
@@ -58,6 +108,7 @@ function getRepositories() {
             const repos = document.getElementById("repos").appendChild(child);
             child.appendChild(avatar);
         }
+        setCursorDefault();
     }
 
     request.send();
@@ -65,6 +116,7 @@ function getRepositories() {
 
 function searchRepositories(e) {
     e.preventDefault();
+    setCursorLoading();
     const searchTerm = document.getElementById("input-repo").value;
 
     const request = new XMLHttpRequest();
@@ -100,8 +152,18 @@ function searchRepositories(e) {
             const repos = document.getElementById("repos").appendChild(child);
             child.appendChild(avatar);
         }
+        setCursorDefault();
     }
 
     request.send();
 }
 
+function setCursorLoading() {
+    const cursor = document.getElementsByTagName("body")[0];
+    cursor.style.cursor = "progress";
+}
+
+function setCursorDefault() {
+    const cursor = document.getElementsByTagName("body")[0];
+    cursor.style.cursor = "default";
+}
