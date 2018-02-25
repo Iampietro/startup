@@ -1,36 +1,6 @@
-class EventEmitter {
-
-    constructor() {
-        this.events = [];
-    }
-
-    on(eventName, callback) {
-        if (this.events[eventName]) {
-            this.events[eventName].push(callback);
-        } else {
-            this.events[eventName] = [callback];
-        }
-    }
-
-    emit(eventName) {
-        if (this.events[eventName]) {
-            this.events[eventName].forEach(function(callback){
-                callback(eventName);
-            });
-        }
-    }
-
-    off(event, givenCallback) { /* since the method recives the callback,
-                                             we delete just that, instead of the whole event */
-        if (this.events[event]) {
-            let index = this.events[event].indexOf(givenCallback);
-            if (index !== -1) {
-                this.events[event].splice(index,1);
-            }
-        }
-    }
-}
-
+const EventEmitter = require("./eventEmitter")
+const Actor = require("./actor")
+const Logger = require("./logger")
 
 class Movie extends EventEmitter{
 
@@ -65,22 +35,6 @@ class Movie extends EventEmitter{
     }
 }
 
-class Actor {
-
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-}
-
-class Logger { 
-
-    constructor() {}
-
-    log(info) {
-        console.log("The event: '" +info+ "' has been triggered!");
-    }
-}
 
 let terminator = new Movie('Terminator I', 1985, 60);
 const arnold = new Actor('Arnold Schwarzenegger', 50);
@@ -117,3 +71,5 @@ Object.assign(Movie.prototype, social);
 
 terminator.like("Iampietro Matias");
 terminator.share("Iampietro Matias");
+
+module.exports = Movie;
