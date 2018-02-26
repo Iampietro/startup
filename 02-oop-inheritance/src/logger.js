@@ -1,4 +1,4 @@
-class Logger { 
+module.exports = class Logger { 
 
     constructor() {}
 
@@ -7,4 +7,3 @@ class Logger {
     }
 }
 
-module.exports = Logger;
