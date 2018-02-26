@@ -1,6 +1,7 @@
-const Emiter = require('./eventEmitter')
+require("babel-register");
+import Emitter from './eventEmitter';
 
-module.exports = class Movie extends Emiter{
+class Movie extends Emitter{
 
     constructor(title, year, duration) {
         super();
@@ -33,5 +34,5 @@ module.exports = class Movie extends Emiter{
     }
 }
 
-
+export default Movie;
 

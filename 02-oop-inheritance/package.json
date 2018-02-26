@@ -5,14 +5,16 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --presets babel-preset-es2015 --out-dir dist"
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "compile": "npx babel src/actor.js src/eventEmitter.js src/logger.js src/movie.js src/app.js --out-file dist/bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0"
   },
   "dependencies": {
     "babel-core": "^6.26.0",

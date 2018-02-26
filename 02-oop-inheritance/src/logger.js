@@ -1,4 +1,4 @@
-module.exports = class Logger { 
+class Logger { 
 
     constructor() {}
 
@@ -7,3 +7,4 @@ module.exports = class Logger {
     }
 }
 
+export default Logger;

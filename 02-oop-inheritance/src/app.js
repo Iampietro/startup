@@ -1,7 +1,6 @@
-const Emiter = require('./eventEmitter')
-const Actor = require('./actor');
-const Logger = require('./logger');
-const Movie = require('./movie');
+import Actor from './actor'; 
+import Logger from './logger';
+import Movie from './movie';
 
 let terminator = new Movie('Terminator I', 1985, 60);
 const arnold = new Actor('Arnold Schwarzenegger', 50);
