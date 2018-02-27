@@ -6,4 +6,4 @@ class Actor {
     }
 }
 
-export default Actor;
+module.exports = Actor;

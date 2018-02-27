@@ -1,9 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Actor = function Actor(name, age) {
@@ -13,12 +9,24 @@ var Actor = function Actor(name, age) {
     this.age = age;
 };
 
-exports.default = Actor;
-"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Logger = function () {
+    function Logger() {
+        _classCallCheck(this, Logger);
+    }
+
+    _createClass(Logger, [{
+        key: "log",
+        value: function log(info) {
+            console.log("The event: '" + info + "' has been triggered!");
+        }
+    }]);
+
+    return Logger;
+}();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -66,46 +74,7 @@ var Emitter = function () {
     return Emitter;
 }();
 
-exports.default = Emitter;
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Logger = function () {
-    function Logger() {
-        _classCallCheck(this, Logger);
-    }
-
-    _createClass(Logger, [{
-        key: "log",
-        value: function log(info) {
-            console.log("The event: '" + info + "' has been triggered!");
-        }
-    }]);
-
-    return Logger;
-}();
-
-exports.default = Logger;
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _eventEmitter = require("./eventEmitter");
-
-var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -159,28 +128,11 @@ var Movie = function (_Emitter) {
     }]);
 
     return Movie;
-}(_eventEmitter2.default);
+}(Emitter);
 
-exports.default = Movie;
-'use strict';
-
-var _actor = require('./actor');
-
-var _actor2 = _interopRequireDefault(_actor);
-
-var _logger = require('./logger');
-
-var _logger2 = _interopRequireDefault(_logger);
-
-var _movie = require('./movie');
-
-var _movie2 = _interopRequireDefault(_movie);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var terminator = new _movie2.default('Terminator I', 1985, 60);
-var arnold = new _actor2.default('Arnold Schwarzenegger', 50);
-var actors = [new _actor2.default('Paul Winfield', 50), new _actor2.default('Michael Biehn', 50), new _actor2.default('Linda Hamilton', 50)];
+var terminator = new Movie('Terminator I', 1985, 60);
+var arnold = new Actor('Arnold Schwarzenegger', 50);
+var actors = [new Actor('Paul Winfield', 50), new Actor('Michael Biehn', 50), new Actor('Linda Hamilton', 50)];
 
 var social = {
     share: function share(friendName) {
@@ -191,9 +143,9 @@ var social = {
     }
 };
 
-Object.assign(_movie2.default.prototype, social);
+Object.assign(Movie.prototype, social);
 
-var logger = new _logger2.default();
+var logger = new Logger();
 
 terminator.addCast(arnold);
 terminator.addCast(actors);

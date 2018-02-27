@@ -1,5 +1,5 @@
 require("babel-register");
-import Emitter from './eventEmitter';
+const Emitter = require('./eventEmitter');
 
 class Movie extends Emitter{
 
@@ -34,5 +34,5 @@ class Movie extends Emitter{
     }
 }
 
-export default Movie;
+module.exports = Movie;
 
