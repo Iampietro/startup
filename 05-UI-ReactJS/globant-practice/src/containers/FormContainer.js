@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import AddMovie from '../components/addMovie.js';
 
-class FormContainer extends Component {
+class FormContainer extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            movies: [],
+            movies: []
         };
     }
 
     handleSavingClick(movie) {
-        const movies = this.state.movies.slice();
-        movies.push(movie);
+        const movies = this.state.movies;
+        movies.push(Object.assign({}, movie));
         this.setState({
             movies: movies
         });
+        localStorage.setItem('movies', JSON.stringify(movies));
     }
     
+
     componentDidMount() {
 
         const areThereMoviesSaved = localStorage.getItem('movies');
@@ -31,7 +33,7 @@ class FormContainer extends Component {
 
     render() {
         return (
-            <AddMovie />
+            <AddMovie onClick={movie => this.handleSavingClick(movie)}/>
         )
     }
 }

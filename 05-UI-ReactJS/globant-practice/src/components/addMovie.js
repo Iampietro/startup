@@ -26,9 +26,14 @@ class AddMovie extends Component {
         });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+
+    }
+
     render() {
         return (
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <label>
               Movie Title:
               <input
@@ -54,6 +59,10 @@ class AddMovie extends Component {
                 value={this.state.movie.duration}
                 onChange={this.handleInputChange} />
             </label>
+            <button type="submit" value="Submit"
+             onClick={() => this.props.onClick(this.state.movie)}>
+                Save
+             </button>
           </form>
         );
     }
