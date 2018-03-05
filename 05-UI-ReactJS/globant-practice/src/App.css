@@ -2,27 +2,250 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+@media only screen and (min-width: 300px) and (max-width: 500px){
+    span {
+        margin-bottom: 5px;
+    }
+
+    section .row .column
+    .prettyForm input.input-field {
+        width: 150px;
+    }
+
+    section .row
+    .prettyForm .textarea-field {
+        width: 100%;
+    }
+
+    #btns button {
+        margin: auto;
+        display: block;
+    }
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+@media only screen and (min-width: 501px) and (max-width: 751px){
+    span {
+        margin-bottom: 5px;
+    }
+
+    section .row .column
+    .prettyForm input.input-field {
+        width: 150px;
+    }
+
+    section .row
+    .prettyForm .textarea-field {
+        width: 100%;
+    }
+
+    #btns button {
+        margin: auto;
+        display: block;
+    }
 }
 
-.App-title {
-  font-size: 1.5em;
+
+
+.prettyForm {
+    max-width: 500px;
+    padding: 20px 12px 10px 20px;
+    font: 13px Arial, Helvetica, sans-serif;
+    margin-right: 25%;
+    margin-left: 30%;
+}
+.prettyForm-heading{
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 15px;
+    padding-bottom: 3px;
+    text-align: center;
 }
 
-.App-intro {
-  font-size: large;
+
+.prettyForm label{
+    display: block;
+    margin: 0px 0px 15px 0px;
+}
+.prettyForm label > span{
+    width: 100px;
+    font-weight: bold;
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+.prettyForm span.required{
+    color:red;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.prettyForm input.input-field{
+    width: 48%;
+    
 }
+
+.prettyForm input.input-field, 
+.prettyForm .textarea-field, 
+ .prettyForm .select-field{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+}
+
+.prettyForm .input-field:focus, 
+.prettyForm .textarea-field:focus,  
+.prettyForm .select-field:focus{
+    border: 1px solid #0C0;
+}
+
+.prettyForm .textarea-field{
+    height:100px;
+    width: 55%;
+}
+
+.btnSubmit {
+    -moz-box-shadow:inset 0px 0px 8px -36px #3dc21b;
+    -webkit-box-shadow:inset 0px 0px 8px -36px #3dc21b;
+    box-shadow:inset 0px 0px 8px -36px #3dc21b;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #44c767),
+     color-stop(1, #5cbf2a));
+    background:-moz-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+    background:-webkit-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+    background:-o-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+    background:-ms-linear-gradient(top, #44c767 5%, #5cbf2a 100%);
+    background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#44c767',
+     endColorstr='#5cbf2a',GradientType=0);
+    background-color:#44c767;
+    -moz-border-radius:42px;
+    -webkit-border-radius:42px;
+    border-radius:42px;
+    border:2px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+   font-size:15px;
+   font-weight:bold;
+   padding:10px 23px;
+   text-decoration:none;
+   text-shadow:0px 1px 0px #2f6627;
+}
+
+.btnSubmit:hover {
+    background: #13660a;
+}
+
+.btnSubmit:disabled {
+    background: #dddddd;
+    border: #dddddd;
+    cursor: not-allowed;
+}
+
+#btns label {
+    display: inline;
+}
+
+input[placeholder], textarea[placeholder] {
+    font-style: italic;
+}
+
+#btns button {
+    margin: 5px auto;
+    display: block;
+
+}
+
+.column { 
+    margin-bottom: 1.5rem; 
+}
+
+.container {
+    margin: 0 auto;
+    width: 90%;
+    max-width : 1200px; 
+}
+
+
+.column.third {
+    width: 33.3%;
+}
+
+.column.two-thirds { 
+    width: 66.7%; 
+}
+
+.column.full { 
+    width: 100%;
+}
+
+.row:before, 
+.row:after {
+    content:"";
+    display: table ;
+    clear:both;
+}
+
+.forCheckbox {
+    margin-top: 8px;
+}
+
+@font-face {
+    font-family: 'Syncopate';
+    src: url(https://fonts.gstatic.com/s/syncopate/v9/pe0sMIuPIYBCpEV5eFdCBfe_.woff2);
+}
+
+html {
+  /* subtlepatterns.com */
+    background: url("http://neilcarpenter.com/demos/asfalt.png") repeat;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    color: #858781;
+    font-family:Arial;
+
+}
+
+h1, h2 {
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    font-family: 'Syncopate', Helvetica, Arial;
+}
+
+a:link {
+    color: #858781;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #858781;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+li {
+  font: 200 20px/1.5 Arial, sans-serif;
+  color: #858781;
+}
+ 
+ 
+ol {
+  list-style-type: upper-roman;
+  color: #000;
+  display: block;
+  width: 200px;
+}
+ 

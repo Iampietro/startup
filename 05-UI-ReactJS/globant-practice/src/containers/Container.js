@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import AddMovie from '../components/addMovie.js';
+import Favourite from '../components/favourite.js';
 
-class FormContainer extends React.Component {
+class Container extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            movies: []
+            movies: [],
         };
     }
 
@@ -18,7 +19,12 @@ class FormContainer extends React.Component {
         });
         localStorage.setItem('movies', JSON.stringify(movies));
     }
-    
+
+    handleChange(active) {
+        this.setState({
+            active: "favourite"
+        });
+    }
 
     componentDidMount() {
 
@@ -32,10 +38,14 @@ class FormContainer extends React.Component {
     }
 
     render() {
+        const movies = this.state.movies;
         return (
-            <AddMovie onClick={movie => this.handleSavingClick(movie)}/>
+           <div>
+               <AddMovie onClick={movie => this.handleSavingClick(movie)}/>
+               <Favourite movies={movies} />
+           </div>
         )
     }
 }
 
-export default FormContainer;
+export default Container;
