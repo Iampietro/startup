@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../App.css';
 
 function AllMovies(props) {
 
@@ -7,7 +8,8 @@ function AllMovies(props) {
     if(movies) {
         movies = movies.map((movie) => {
             return  <li key={movie.title}
-                        onClick={() => props.onClick(movie)}>
+                        onClick={() => props.onClick(movie)}
+                        className="for-movies">
                         {movie.title}, {movie.year}
                     </li>
         });

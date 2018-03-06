@@ -10,11 +10,13 @@ class AddMovie extends Component {
                 title: '',
                 year: '',
                 duration: '',
-                checked: false
+                checked: false,
+                deleted: false
             }
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange(event) {
@@ -30,6 +32,15 @@ class AddMovie extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const movie = this.state.movie;
+        movie.title = '';
+        movie.duration = '';
+        movie.year = '';
+        movie.checked = false;
+        movie.deleted = false;
+        this.setState({
+            movie: movie
+        });
     }
 
     canBeSubmitted() {

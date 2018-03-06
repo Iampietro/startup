@@ -13,7 +13,7 @@ class Edit  extends Component {
     }
 
     canBeSubmitted() {
-        const { title, year, duration } = this.movie;
+        const { title, year, duration } = this.props.movie;
         return (
             title.length > 0 &&
             year.length > 0 &&
@@ -47,6 +47,7 @@ class Edit  extends Component {
 
     render() {
         const movie = this.state.movie;
+        const isEnabled = this.canBeSubmitted();
         if(movie !== null) {
             return (
               <div className="prettyForm">
@@ -84,7 +85,7 @@ class Edit  extends Component {
                         value={this.state.movie.duration}
                         onChange={this.handleInputChange} />
                     </label>
-                    <label>
+                    <label className="inline">
                       <span>Favourite?</span>
                       <input
                         className="forCheckbox"
@@ -93,9 +94,18 @@ class Edit  extends Component {
                         checked={this.state.movie.checked}
                         onChange={this.handleInputChange} />
                     </label>
+                    <label className="inline someExtraMargin">
+                      <span>Delete?</span>
+                      <input
+                        className="forCheckbox"
+                        name="deleted"
+                        type="checkbox"
+                        checked={this.state.movie.deleted}
+                        onChange={this.handleInputChange} />
+                    </label>
                     <div id="btns">
                         <button type="button" value="Submit" className="btnSubmit"
-                        disabled={!this.canBeSubmitted}
+                        disabled={!isEnabled}
                          onClick={() => this.props.onClick(this.state.movie)}>
                             Edit
                          </button>

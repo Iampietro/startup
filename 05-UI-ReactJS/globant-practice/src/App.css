@@ -205,6 +205,19 @@ input[placeholder] {
     display: inline-block;
 }
 
+.for-movies {
+      -webkit-transition: font-weight 0.3s ease, background-color 0.3s ease;
+      -moz-transition: font-weight 0.3s ease, background-color 0.3s ease;
+      -o-transition: font-weight 0.3s ease, background-color 0.3s ease;
+      -ms-transition: font-weight 0.3s ease, background-color 0.3s ease;
+      transition: font-weight 0.3s ease, background-color 0.3s ease;
+}
+
+.for-movies:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
 @font-face {
     font-family: 'Syncopate';
     src: url(https://fonts.gstatic.com/s/syncopate/v9/pe0sMIuPIYBCpEV5eFdCBfe_.woff2);
@@ -259,4 +272,12 @@ ol {
 
 p {
     margin-left: 7%;
+}
+
+form label.inline {
+    display: inline-block;
+}
+
+form label.someExtraMargin {
+    margin-left: 22%;
 }

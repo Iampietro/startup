@@ -33,24 +33,32 @@ class Container extends Component {
             });
         } 
     }
-    
+
     handleMovieToEdit(movie) {
-        this.setState({
-            movieToUpdate: movie,
-            editingMovie: true
-        });
+        if (!this.state.editingMovie) {
+                this.setState({
+                movieToUpdate: movie,
+                editingMovie: true
+            });
+        }
     }
 
     updateMovie(updatedMovie) {
-        const index = this.state.movies.indexOf(this.state.movieToUpdate);
+        const index = this.state.movies.indexOf(this.state.movieToUpdate); //Index of the movie to update/delete
         let movies = this.state.movies;
-        movies[index] = updatedMovie;
+        if (updatedMovie.deleted) {
+            movies = movies.filter(movie => movie !== updatedMovie);
+        } else {
+            movies[index] = updatedMovie;
+        }
         this.setState({
             movies: movies,
             movieToUpdate: null,
             editingMovie: false
-        })
+        });
+        localStorage.setItem('movies', JSON.stringify(movies));
     }
+
 
     render() {
         const movies = this.state.movies;
