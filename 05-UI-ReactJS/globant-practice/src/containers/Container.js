@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import AddMovie from '../components/addMovie.js';
 import Favourite from '../components/favourite.js';
+import AllMovies from '../components/allMovies.js';
+import Edit from '../components/edit.js';
+import '../App.css';
 
 class Container extends Component {
 
@@ -8,6 +11,8 @@ class Container extends Component {
         super(props);
         this.state = {
             movies: [],
+            movieToUpdate: null,
+            editingMovie: false
         };
     }
 
@@ -20,31 +25,67 @@ class Container extends Component {
         localStorage.setItem('movies', JSON.stringify(movies));
     }
 
-    handleChange(active) {
-        this.setState({
-            active: "favourite"
-        });
-    }
-
     componentDidMount() {
-
         const areThereMoviesSaved = localStorage.getItem('movies');
-
         if (areThereMoviesSaved) {
             this.setState({
                 movies: JSON.parse(areThereMoviesSaved)
             });
         } 
     }
+    
+    handleMovieToEdit(movie) {
+        this.setState({
+            movieToUpdate: movie,
+            editingMovie: true
+        });
+    }
+
+    updateMovie(updatedMovie) {
+        const index = this.state.movies.indexOf(this.state.movieToUpdate);
+        let movies = this.state.movies;
+        movies[index] = updatedMovie;
+        this.setState({
+            movies: movies,
+            movieToUpdate: null,
+            editingMovie: false
+        })
+    }
 
     render() {
         const movies = this.state.movies;
+        const movieToUpdate = this.state.movieToUpdate;
+        const isEditing = this.state.editingMovie;
         return (
            <div>
-               <AddMovie onClick={movie => this.handleSavingClick(movie)}/>
-               <Favourite movies={movies} />
+                {   isEditing
+                        ?   <div className="row">
+                                <div className="column full">
+                                    <Edit movie={movieToUpdate}
+                                          onClick={movie => this.updateMovie(movie)}
+                                    />
+                                </div>
+                            </div>
+                        :   <div className="row">
+                                <div className="column full">
+                                    <AddMovie onClick={movie => this.handleSavingClick(movie)}/>
+                                </div>
+                            </div>
+
+                }
+               <div className="row">
+                    <div className="column half inline">
+                        <Favourite movies={movies} />
+                    </div>
+                    <div className="column half inline">
+                        <AllMovies onClick={movie => this.handleMovieToEdit(movie)}
+                                   movies={movies} />
+                    </div> 
+               </div>
+               
            </div>
-        )
+           
+        );
     }
 }
 
